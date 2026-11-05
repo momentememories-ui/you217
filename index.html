@@ -31,13 +31,15 @@
         .butterfly {
             position: absolute; width: 20px; height: 20px;
             pointer-events: none; z-index: 1; font-size: 20px;
+            /* แก้ไข: เริ่มต้นอยู่ด้านล่างจอและกำหนดให้ลอยขึ้นทันทีโดยไม่มีการค้างนิ่ง */
+            bottom: -5vh;
             animation: flying 12s linear infinite;
         }
         @keyframes flying {
-            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { transform: translate(400px, -500px) rotate(360deg); opacity: 0; }
+            100% { transform: translateY(-105vh) translateX(50px) rotate(360deg); opacity: 0; }
         }
 
         #status-text { 
@@ -185,7 +187,7 @@
 
     <audio id="bg-music" src="song.mp3" loop autoplay></audio>
 
-    <h1 id="status-text">เธอช่วยรดน้ำให้ต้นไม้ต้นนี้หน่อยนะ🌱</h1>
+    <h1 id="status-text">ครูเกดช่วยรดน้ำให้ต้นไม้ต้นนี้หน่อยนะคะ🌱</h1>
 
     <div id="plant-container">
         <img id="main-plant-img" src="stage1.png">
@@ -228,9 +230,8 @@
                 const b = document.createElement('div');
                 b.className = 'butterfly';
                 b.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-                b.style.left = Math.random() * 90 + 'vw';
-                b.style.top = Math.random() * 90 + 'vh';
-                b.style.animationDelay = Math.random() * 5 + 's';
+                b.style.left = Math.random() * 95 + 'vw';
+                b.style.animationDelay = Math.random() * 10 + 's';
                 document.body.appendChild(b);
             }
         }
@@ -307,7 +308,8 @@
         nongImg.onclick = () => {
             if (!isBouquetStage) {
                 plantImg.style.transform = "scale(0.3)"; 
-                plantImg.src = 'bouquet.png'; 
+                /* แก้ไข: เปลี่ยนเป็นไฟล์ bouquet.jpg ตามที่ระบุ */
+                plantImg.src = 'bouquet.jpg'; 
                 
                 setTimeout(() => {
                     plantImg.classList.add('wobble-active');
